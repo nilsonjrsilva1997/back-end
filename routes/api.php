@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::group(['prefix' => 'clicksign'], function () {
-        Route::group(['prefix' => 'hooks'], function () {
-            Route::post('sign', [\App\Http\Controllers\ValidateHookController::class, 'validateHooks']);
-        });
+    Route::group(['prefix' => 'ticket'], function () {
+        Route::get('/', [\App\Http\Controllers\TicketController::class, 'index']);
+        Route::get('{id}/', [\App\Http\Controllers\TicketController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\TicketController::class, 'create']);
+        Route::put('/{id}', [\App\Http\Controllers\TicketController::class, 'update']);
+        Route::delete('/{id}', [\App\Http\Controllers\TicketController::class, 'destroy']);
     });
 });
 
 Route::group(['prefix' => 'user'], function () {
     Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);
     Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
-});
+});     
