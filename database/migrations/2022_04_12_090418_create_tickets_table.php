@@ -14,7 +14,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('bar_code');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->date('due_date');
             $table->integer('user_id');
             $table->timestamps();

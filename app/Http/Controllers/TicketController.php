@@ -23,7 +23,7 @@ class TicketController extends Controller
     {
         $validatedData = $request->validate([
             'bar_code' => 'required|string|max:255',
-            'file' => 'required|string|max:255',
+            'file' => 'string|max:255',
             'due_date' => 'required|date',
         ]);
 
