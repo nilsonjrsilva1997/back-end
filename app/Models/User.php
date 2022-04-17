@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use App\Models\Ticket;
+use App\Models\Debt;
 
 class User extends Authenticatable
 {
@@ -43,8 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function tickets()
+    public function debts()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(Debt::class);
     }
 }

@@ -10,7 +10,7 @@ class TicketController extends Controller
 {
     public function index()
     {
-        return Auth::user()->tickets()->get();
+        return Ticket::all();
     }
 
     public function show($id)
@@ -25,9 +25,8 @@ class TicketController extends Controller
             'bar_code' => 'required|string|max:255',
             'file' => 'string|max:255',
             'due_date' => 'required|date',
+            'debt_id' => 'required|integer|exists:debts,id',
         ]);
-
-        $validatedData['user_id'] = Auth::id();
 
         return Ticket::create($validatedData);
     }
@@ -38,6 +37,7 @@ class TicketController extends Controller
             'bar_code' => 'string|max:255',
             'file' => 'string|max:255',
             'due_date' => 'date',
+            'debt_id' => 'integer|exists:debts,id',
         ]);
 
         $ticket = Ticket::findOrFail($id);
